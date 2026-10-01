@@ -42,10 +42,6 @@ export default function LoginPage() {
           <h1 className="mt-2 text-balance text-3xl font-semibold tracking-tight md:text-4xl">
             Кафетерий льгот
           </h1>
-          <p className="text-pretty mt-4 max-w-md text-base leading-relaxed text-muted">
-            Витрина баллов, пакет льгот, согласование и пульт HR. Код наружу не
-            нужен — только сценарий.
-          </p>
           <div className="menu-panel mt-8 p-5 text-base leading-relaxed">
             <p className="font-medium text-ink">С чего кликать</p>
             <ol className="mt-3 list-decimal space-y-2 pl-5 text-muted">
