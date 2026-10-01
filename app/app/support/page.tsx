@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { FilenameButtons } from "@/components/document-preview";
-import { Button, Empty, Field, PageHeader, Panel, Textarea, Input } from "@/components/ui";
+import { Button, Empty, Field, FilePickButton, Input, PageHeader, Panel, Textarea } from "@/components/ui";
 import { formatDateTime } from "@/lib/format";
 import { useStore } from "@/lib/store";
 
@@ -42,29 +42,20 @@ export default function SupportPage() {
             autoComplete="off"
           />
         </Field>
-        <Field label="Вложение">
-          <Input
-            value={fileName}
-            onChange={(e) => setFileName(e.target.value)}
-            name="support-file"
-            autoComplete="off"
-          />
-        </Field>
-        <Field label="Файл с диска">
-          <Input
-            type="file"
-            onChange={(e) => {
-              const file = e.target.files?.[0];
-              if (file) setFileName(file.name);
-            }}
-          />
-        </Field>
-        {fileName ? (
-          <div>
-            <p className="text-sm text-muted">К обращению: {fileName}</p>
-            <FilenameButtons names={[fileName]} />
+        <div className="flex flex-col gap-2 text-base">
+          <span className="text-muted">Вложение</span>
+          <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2">
+            <Input
+              value={fileName}
+              onChange={(e) => setFileName(e.target.value)}
+              name="support-file"
+              aria-label="Вложение"
+              autoComplete="off"
+            />
+            <FilePickButton onName={setFileName} />
           </div>
-        ) : null}
+        </div>
+        {fileName ? <FilenameButtons names={[fileName]} /> : null}
         <div>
           <Button
             variant="primary"

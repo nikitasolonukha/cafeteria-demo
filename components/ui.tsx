@@ -1,9 +1,4 @@
-import type {
-  ButtonHTMLAttributes,
-  InputHTMLAttributes,
-  ReactNode,
-  TextareaHTMLAttributes,
-} from "react";
+import { useRef, type ButtonHTMLAttributes, type InputHTMLAttributes, type ReactNode, type TextareaHTMLAttributes } from "react";
 
 export function Button({
   variant = "secondary",
@@ -35,6 +30,33 @@ export function Field({
       <span className="text-muted">{label}</span>
       {children}
     </label>
+  );
+}
+
+export function FilePickButton({
+  onName,
+}: {
+  onName: (name: string) => void;
+}) {
+  const ref = useRef<HTMLInputElement>(null);
+  return (
+    <span className="inline-flex shrink-0">
+      <input
+        ref={ref}
+        type="file"
+        className="hidden"
+        aria-hidden
+        tabIndex={-1}
+        onChange={(e) => {
+          const file = e.target.files?.[0];
+          if (file) onName(file.name);
+          e.target.value = "";
+        }}
+      />
+      <Button type="button" onClick={() => ref.current?.click()}>
+        Выбрать файл
+      </Button>
+    </span>
   );
 }
 

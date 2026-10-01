@@ -16,7 +16,7 @@ export function DocumentPreview({
   const [copied, setCopied] = useState(false);
 
   return (
-    <div className="fixed inset-0 z-50 overflow-y-auto bg-ink/25 p-4">
+    <div className="fixed inset-0 z-[80] overflow-y-auto bg-ink/25 p-4">
       <div
         role="dialog"
         aria-modal="true"

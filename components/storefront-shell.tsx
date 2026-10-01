@@ -251,7 +251,7 @@ export function StorefrontShell({ children }: { children: ReactNode }) {
       <a href="#main" className="skip-link">
         К содержимому
       </a>
-      <aside className="sticky top-0 hidden h-screen w-[232px] shrink-0 border-r border-line bg-surface md:flex md:flex-col">
+      <aside className="sticky top-0 z-40 hidden h-screen w-[232px] shrink-0 overflow-visible border-r border-line bg-surface md:flex md:flex-col">
         <div className="border-b border-line px-4 py-6">
           <p className="text-sm text-muted">ГК «Альтаир»</p>
           <p className="mt-1 text-base font-semibold">Кафетерий льгот</p>
@@ -281,7 +281,7 @@ export function StorefrontShell({ children }: { children: ReactNode }) {
             />
           ))}
         </nav>
-        <div className="space-y-3 border-t border-line p-3">
+        <div className="relative z-50 space-y-3 border-t border-line p-3">
           <div className="px-3">
             <p className="text-base font-medium">{me.name}</p>
             <p className="text-sm text-muted">{me.title}</p>
@@ -298,7 +298,7 @@ export function StorefrontShell({ children }: { children: ReactNode }) {
               {formatPoints(balance)} баллов · {me.name.split(" ")[0]}
             </p>
           </div>
-          <div className="w-[7.5rem] shrink-0">
+          <div className="w-36 shrink-0">
             <RoleSwitcher compact />
           </div>
         </header>

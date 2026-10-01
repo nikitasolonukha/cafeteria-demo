@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import { MenuSelect } from "@/components/menu-select";
 import { Button, Field, Input, PageHeader, Select } from "@/components/ui";
 import { sectionLabels } from "@/lib/format";
 import { useStore } from "@/lib/store";
@@ -72,15 +73,21 @@ export default function SegmentsPage() {
       <section className="mt-6 border border-line bg-surface p-5">
         <p className="text-sm font-medium">Назначить сегмент сотруднику</p>
         <div className="mt-3 grid gap-3 md:grid-cols-2">
-          <Field label="Сотрудник">
-            <Select value={personId} onChange={(e) => setPersonId(e.target.value)}>
-              {state.people.slice(0, 20).map((p) => (
-                <option key={p.id} value={p.id}>
-                  {p.name}
-                </option>
-              ))}
-            </Select>
-          </Field>
+          <div className="flex flex-col gap-2 text-base">
+            <span className="text-muted">Сотрудник</span>
+            <MenuSelect
+              aria-label="Сотрудник"
+              value={personId}
+              onChange={setPersonId}
+              options={state.people
+                .filter((p) => !p.exclusion)
+                .map((p) => ({
+                  value: p.id,
+                  label: p.name,
+                  meta: p.department,
+                }))}
+            />
+          </div>
           <Field label="Сегмент">
             <Select value={segPick} onChange={(e) => setSegPick(e.target.value)}>
               {state.segments.map((s) => (

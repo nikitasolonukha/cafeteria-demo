@@ -5,7 +5,7 @@ import { useParams, useRouter } from "next/navigation";
 import { useMemo, useState } from "react";
 import { Notice } from "@/components/notice";
 import { AttachmentButtons } from "@/components/document-preview";
-import { Button, Field, Input, PageHeader, Panel, Points, Select } from "@/components/ui";
+import { Button, Field, FilePickButton, Input, PageHeader, Panel, Points, Select } from "@/components/ui";
 import { ageFromBirth, sectionLabels } from "@/lib/format";
 import { canSeeSection, totalBalance } from "@/lib/rules";
 import { useStore } from "@/lib/store";
@@ -346,18 +346,18 @@ export default function BenefitPage() {
 
       {benefit.type === "docs" ? (
         <Panel className="mt-4 max-w-md p-5">
-          <Field label="Файл подтверждения">
-            <Input
-              type="file"
-              onChange={(e) => {
-                const file = e.target.files?.[0];
-                if (file) setDocName(file.name);
-              }}
-            />
-          </Field>
-          <p className="mt-2 text-sm">
-            В заявку уйдёт: {docName}
-          </p>
+          <div className="flex flex-col gap-2 text-base">
+            <span className="text-muted">Файл подтверждения</span>
+            <div className="grid grid-cols-[minmax(0,1fr)_auto] items-center gap-2">
+              <Input
+                value={docName}
+                onChange={(e) => setDocName(e.target.value)}
+                aria-label="Файл подтверждения"
+              />
+              <FilePickButton onName={setDocName} />
+            </div>
+          </div>
+          <p className="mt-2 text-sm text-muted">В заявку уйдёт имя файла.</p>
           <AttachmentButtons
             items={[
               {

@@ -1,6 +1,7 @@
 "use client";
 
 import { useMemo, useState } from "react";
+import { MenuSelect } from "@/components/menu-select";
 import { Button, PageHeader } from "@/components/ui";
 import { formatPoints } from "@/lib/format";
 import { useStore } from "@/lib/store";
@@ -33,14 +34,15 @@ export default function BudgetsPage() {
       {msg ? <p className="mb-4 text-sm text-pine">{msg}</p> : null}
       <div className="mb-4 max-w-xs">
         <label className="mb-1 block text-sm text-muted">Период бюджета</label>
-        <select
-          className="control-field h-10 w-full"
+        <MenuSelect
+          aria-label="Период бюджета"
           value={period}
-          onChange={(e) => setPeriod(e.target.value)}
-        >
-          <option value="2026">2026 (текущий)</option>
-          <option value="2025">2025 (завершён)</option>
-        </select>
+          onChange={setPeriod}
+          options={[
+            { value: "2026", label: "2026 (текущий)" },
+            { value: "2025", label: "2025 (завершён)" },
+          ]}
+        />
       </div>
       {period !== "2026" ? (
         <p className="mb-4 text-sm text-danger">

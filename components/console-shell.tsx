@@ -143,7 +143,7 @@ export function ConsoleShell({ children }: { children: ReactNode }) {
       <a href="#main" className="skip-link">
         К содержимому
       </a>
-      <aside className="w-full shrink-0 border-b border-line bg-surface md:sticky md:top-0 md:flex md:h-screen md:w-[232px] md:flex-col md:border-b-0 md:border-r">
+      <aside className="relative z-40 w-full shrink-0 overflow-visible border-b border-line bg-surface md:sticky md:top-0 md:flex md:h-screen md:w-[232px] md:flex-col md:border-b-0 md:border-r">
         <div className="px-4 py-6">
           <p className="text-sm text-muted">Пульт</p>
           <p className="mt-1 text-base font-semibold">Кафетерий льгот</p>
@@ -186,14 +186,14 @@ export function ConsoleShell({ children }: { children: ReactNode }) {
             );
           })}
         </nav>
-        <div className="hidden border-t border-line p-3 md:block">
+        <div className="relative z-50 hidden border-t border-line p-3 md:block">
           <RoleSwitcher />
         </div>
         <div className="border-t border-line px-3 py-3 md:hidden">
           <RoleSwitcher compact />
         </div>
       </aside>
-      <main id="main" className="min-w-0 flex-1 px-4 py-8 md:px-8">
+      <main id="main" className="min-w-0 flex-1 overflow-x-auto px-4 py-8 md:px-8">
         {children}
       </main>
     </div>

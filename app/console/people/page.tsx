@@ -13,7 +13,7 @@ export default function PeoplePage() {
   return (
     <div>
       <PageHeader title="Сотрудники" lead="Баланс, статус и переход в карточку." />
-      <div className="menu-panel overflow-x-auto">
+      <div className="menu-panel max-w-full overflow-x-auto">
         <table className="min-w-full text-left text-sm">
           <thead className="border-b border-line text-muted">
             <tr>
@@ -36,7 +36,7 @@ export default function PeoplePage() {
                   <td className="px-4 py-3">
                     <Link
                       href={`/console/people/${p.id}`}
-                      className="font-medium hover:text-stamp"
+                      className="-mx-4 -my-3 block px-4 py-3 font-medium hover:text-stamp"
                     >
                       {p.name}
                     </Link>

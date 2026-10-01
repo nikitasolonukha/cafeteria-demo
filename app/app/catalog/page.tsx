@@ -2,6 +2,7 @@
 
 import Link from "next/link";
 import { useEffect, useMemo, useState } from "react";
+import { MenuSelect } from "@/components/menu-select";
 import { Empty, Input, PageHeader, Panel, Points } from "@/components/ui";
 import { sectionLabels } from "@/lib/format";
 import { visibleBenefits } from "@/lib/rules";
@@ -90,33 +91,33 @@ export default function CatalogPage() {
           inputMode="numeric"
           className="sm:max-w-[8rem]"
         />
-        <select
-          className="control-field h-10 sm:max-w-[10rem]"
+        <MenuSelect
+          className="sm:w-44"
+          aria-label="Тип льготы"
           value={type}
-          onChange={(e) => setType(e.target.value)}
-        >
-          <option value="all">Все типы</option>
-          <option value="certificate">Сертификат</option>
-          <option value="digital">Цифровой</option>
-          <option value="physical">Физический</option>
-          <option value="dms">ДМС</option>
-          <option value="leave">Отпуск</option>
-          <option value="booking">По записи</option>
-          <option value="docs">С документами</option>
-          <option value="family">Семья</option>
-        </select>
-        <select
-          className="control-field h-10 sm:max-w-[12rem]"
+          onChange={setType}
+          options={[
+            { value: "all", label: "Все типы" },
+            { value: "certificate", label: "Сертификат" },
+            { value: "digital", label: "Цифровой" },
+            { value: "physical", label: "Физический" },
+            { value: "dms", label: "ДМС" },
+            { value: "leave", label: "Отпуск" },
+            { value: "booking", label: "По записи" },
+            { value: "docs", label: "С документами" },
+            { value: "family", label: "Семья" },
+          ]}
+        />
+        <MenuSelect
+          className="sm:w-52"
+          aria-label="Полка каталога"
           value={categoryId}
-          onChange={(e) => setCategoryId(e.target.value)}
-        >
-          <option value="all">Все полки</option>
-          {cats.map((c) => (
-            <option key={c.id} value={c.id}>
-              {c.title}
-            </option>
-          ))}
-        </select>
+          onChange={setCategoryId}
+          options={[
+            { value: "all", label: "Все полки" },
+            ...cats.map((c) => ({ value: c.id, label: c.title })),
+          ]}
+        />
         <div className="flex flex-wrap gap-2">
           <FilterChip
             active={section === "all"}
