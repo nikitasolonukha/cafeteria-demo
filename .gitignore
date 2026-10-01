@@ -36,6 +36,9 @@ yarn-error.log*
 # vercel
 .vercel
 
+# unpacked TZ office xml
+/docs/tz-unpacked/
+
 # typescript
 *.tsbuildinfo
 next-env.d.ts
